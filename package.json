@@ -1,0 +1,17 @@
+{
+  "name": "homebridge-ir-thing",
+  "version": "1.0.0",
+  "description": "Homebridge plugin for my ESP8266 IR blaster",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "homebridge-plugin"
+  ],
+  "author": "mogery",
+  "license": "MIT",
+  "devDependencies": {
+    "homebridge": "^1.6.1"
+  }
+}
