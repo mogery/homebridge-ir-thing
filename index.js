@@ -32,7 +32,7 @@ class IRThing {
     emitSetRequest() {
         const brightness = Math.round(this.brightness / (100 / 7));
         const temperature = Math.round((this.temperature - 140) / (360 / 7));
-        fetch(`http://${this.config.ip}/lamp/${on ? "true" : "false"}/${brightness}/${temperature}`);
+        fetch(`http://${this.config.ip}/lamp/${this.on ? "true" : "false"}/${brightness}/${temperature}`);
     }
 
     handleOnGet() {
