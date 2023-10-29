@@ -61,6 +61,13 @@ class IRThing {
         this.temperature = temperature;
         this.emitSetRequest();
     }
+
+    getServices() {
+        return [
+            this.informationService,
+            this.service
+        ];
+    }
 }
 
 module.exports = (api) => {
