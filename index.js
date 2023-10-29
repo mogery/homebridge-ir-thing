@@ -14,7 +14,7 @@ class IRThing {
             .setCharacteristic(this.api.hap.Characteristic.Manufacturer, "mogery")
             .setCharacteristic(this.api.hap.Characteristic.Model, "IRThing");
         
-        this.service = new this.api.hap.Service(this.api.hap.Service.Lightbulb);
+        this.service = new this.api.hap.Service.Lightbulb();
         
         this.service.getCharacteristic(this.api.hap.Characteristic.On)
             .onGet(this.handleOnGet.bind(this))
