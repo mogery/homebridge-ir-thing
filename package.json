@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Homebridge plugin for my ESP8266 IR blaster",
   "main": "index.js",
+  "engines": {
+    "homebridge": ">=0.2.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
