@@ -2,6 +2,7 @@ class IRThing {
     on = false;
     brightness = 100;
     temperature = 140;
+    updateTimeout = null;
 
     constructor(log, config, api) {
         this.log = log;
@@ -29,10 +30,20 @@ class IRThing {
             .onSet(this.handleColorTemperatureSet.bind(this));
     }
 
+    scheduleSetRequest() {
+        if (this.updateTimeout !== null) {
+            clearTimeout(this.updateTimeout);
+        }
+
+        this.updateTimeout = setTimeout(this.emitSetRequest.bind(this), 100);
+    }
+
     emitSetRequest() {
         const brightness = Math.round(this.brightness / (100 / 7));
         const temperature = Math.round((this.temperature - 140) / (360 / 7));
         fetch(`http://${this.config.ip}/lamp/${this.on ? "true" : "false"}/${brightness}/${temperature}`);
+
+        this.updateTimeout = null;
     }
 
     handleOnGet() {
@@ -41,7 +52,7 @@ class IRThing {
 
     handleOnSet(on) {
         this.on = on;
-        this.emitSetRequest();
+        this.scheduleSetRequest();
     }
 
     handleBrightnessGet() {
@@ -50,7 +61,7 @@ class IRThing {
 
     handleBrightnessSet(brightness) {
         this.brightness = brightness;
-        this.emitSetRequest();
+        this.scheduleSetRequest();
     }
 
     handleColorTemperatureGet() {
@@ -59,7 +70,7 @@ class IRThing {
 
     handleColorTemperatureSet(temperature) {
         this.temperature = temperature;
-        this.emitSetRequest();
+        this.scheduleSetRequest();
     }
 
     getServices() {
